@@ -1,0 +1,17 @@
+{
+  "name": "onlinestore",
+  "version": "1.0.0",
+  "description": "online store",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Boris Biswas",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.4",
+    "express-fileupload": "^1.0.0",
+    "hashids": "^1.2.2",
+    "mysql": "^2.16.0"
+  }
+}
