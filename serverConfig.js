@@ -1,10 +1,10 @@
 module.exports = {
 
 	port: function(){
-		return 3005;
+		return 3000;
 	}, 
 
 	ipAddr: function(){
-		return '192.168.1.0';
+		return 'localhost';
 	}
 }
