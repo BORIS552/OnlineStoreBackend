@@ -103,6 +103,54 @@ exports.getUserWishList = function(req, res) {
 			return;
 		} 
 
-		res.json(results);
+		//console.log(results[0].prod_id);
+		var list = [];
+		results.forEach(function(i) {
+			list.push(i.prod_id);
+		});
+		if(list.length == 0){
+			res.json([]);
+		}else {
+		console.log("List:..."+ list);
+		conn.query("SELECT * FROM products WHERE prod_id IN (" + list.toString() + ")", function(er, result, field){
+
+				if(er){
+				console.log("Error: "+ er.code);
+				return;
+				}
+				//console.log(list.toString());
+				//console.log(list);
+				res.json(result);
+		});
+	}
+
+		
+		
+	});
+}
+
+//deleting wishlist item.
+exports.deleteUserWishlist = function(req, res) {
+
+	var prod_id = req.body.prod_id;
+	var user_email = req.body.user_email;
+	console.log(req.body);
+	console.log("product..id: " + prod_id);
+	console.log("email...: "+ user_email);
+	conn.query("DELETE FROM wishlist WHERE prod_id = ? AND user_email = ?", [prod_id, user_email], function(err, results, fields) {
+		if(err) {
+			console.log("error_occured", err.code);
+			res.send({
+				"code":400,
+				"failed":"error occured"
+			});
+		} else {
+			console.log("The solution is:", results);
+
+			res.send({
+				"code":200,
+				"success":"wishlist Item Removed successfully"
+			});
+		}
 	});
 }

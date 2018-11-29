@@ -34,6 +34,7 @@ router.get('/getProduct', productPath.getProduct);
 
 router.post('/wishlistProduct', productPath.postWishlistProduct);
 router.get('/getUserWishList', productPath.getUserWishList);
+router.post('/deleteUserWishlist', productPath.deleteUserWishlist);
 app.use('/api', router);
 app.listen(port, ip);
 console.log("IP=> "+ip+":"+port)
